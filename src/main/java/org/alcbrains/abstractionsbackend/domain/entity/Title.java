@@ -9,6 +9,13 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "titles")
 public class Title {
+    public Title() {
+    }
+
+    public Title(TitleId id) {
+        this.id = id;
+    }
+
     @EmbeddedId
     private TitleId id;
 

@@ -11,13 +11,26 @@ import java.util.Objects;
 
 @Embeddable
 public class TitleId implements Serializable {
+
     private static final long serialVersionUID = 2636532200630659629L;
+
     @Column(name = "emp_no", nullable = false)
     private Integer empNo;
+
     @Column(name = "title", nullable = false, length = 50)
     private String title;
+
     @Column(name = "from_date", nullable = false)
     private LocalDate fromDate;
+
+    public TitleId() {
+    }
+
+    public TitleId(Integer empNo, String title, LocalDate fromDate) {
+        this.empNo = empNo;
+        this.title = title;
+        this.fromDate = fromDate;
+    }
 
     public LocalDate getFromDate() {
         return fromDate;

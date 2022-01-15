@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,11 @@ public class SalaryServiceRepoImpl implements SalaryService {
 
     public SalaryServiceRepoImpl(@Autowired SalaryRepository salaryRepository) {
         this.salaryRepository = salaryRepository;
+    }
+
+    @Override
+    public List<Salary> findAllSalaries() {\
+        return salaryRepository.findAll();
     }
 
     @Override

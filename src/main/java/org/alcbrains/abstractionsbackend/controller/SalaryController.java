@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.Entity;
 import javax.persistence.EntityNotFoundException;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 @Controller(value = "salaries/")
 public class SalaryController {
@@ -26,6 +27,12 @@ public class SalaryController {
     public SalaryController(@Autowired SalaryService salaryService) {
         this.salaryService = salaryService;
         this.objectMapper = new ObjectMapper();
+    }
+
+    @GetMapping("")
+    @ResponseBody
+    public List<Salary> getAllSalaries() {
+        return salaryService.findAllSalaries();
     }
 
     @GetMapping("salary/{salaryId}")
