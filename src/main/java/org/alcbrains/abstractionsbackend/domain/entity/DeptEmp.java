@@ -19,6 +19,17 @@ public class DeptEmp {
     @Column(name = "to_date", nullable = false)
     private LocalDate toDate;
 
+    public DeptEmp() {
+    }
+
+    public DeptEmp(DeptEmpId id) {
+        this.id = id;
+        this.fromDate = LocalDate.now();
+        this.toDate = LocalDate.now();
+    }
+
+
+
     public LocalDate getToDate() {
         return toDate;
     }

@@ -18,6 +18,14 @@ public class DeptEmpId implements Serializable {
     @Column(name = "dept_no", nullable = false, length = 4)
     private String deptNo;
 
+    public DeptEmpId(Integer empNo, String deptNo) {
+        this.empNo = empNo;
+        this.deptNo = deptNo;
+    }
+
+    public DeptEmpId() {
+    }
+
     public String getDeptNo() {
         return deptNo;
     }

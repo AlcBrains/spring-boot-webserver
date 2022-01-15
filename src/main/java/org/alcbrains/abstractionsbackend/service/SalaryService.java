@@ -10,7 +10,7 @@ public interface SalaryService {
 
     List<Salary> findAllSalaries();
 
-    Optional<Salary> findSalaryById(int salaryId, String fromDate);
+    Optional<Salary> findSalaryById(int employeeId, String fromDate);
 
     void createSalary(Salary salary) throws IllegalArgumentException;
 

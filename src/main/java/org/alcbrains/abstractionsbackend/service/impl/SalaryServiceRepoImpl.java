@@ -23,14 +23,14 @@ public class SalaryServiceRepoImpl implements SalaryService {
     }
 
     @Override
-    public List<Salary> findAllSalaries() {\
+    public List<Salary> findAllSalaries() {
         return salaryRepository.findAll();
     }
 
     @Override
-    public Optional<Salary> findSalaryById(int salaryId, String fromDate) {
+    public Optional<Salary> findSalaryById(int employeeId, String fromDate) {
         LocalDate localDate = LocalDate.parse(fromDate);
-        return salaryRepository.findById(new SalaryId(salaryId, localDate));
+        return salaryRepository.findById(new SalaryId(employeeId, localDate));
     }
 
     @Override

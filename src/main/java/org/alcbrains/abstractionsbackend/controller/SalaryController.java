@@ -24,9 +24,9 @@ public class SalaryController {
         return salaryService.findAllSalaries();
     }
 
-    @GetMapping("salary/{salaryId}")
-    public Salary getSalaryById(@PathVariable int salaryId, @RequestParam String fromDate) throws EntityNotFoundException {
-        return salaryService.findSalaryById(salaryId, fromDate).orElseThrow(EntityNotFoundException::new);
+    @GetMapping("salary/{employeeId}")
+    public Salary getSalaryOfEmployee(@PathVariable int employeeId, @RequestParam String fromDate) throws EntityNotFoundException {
+        return salaryService.findSalaryById(employeeId, fromDate).orElseThrow(EntityNotFoundException::new);
     }
 
     @PostMapping("salary/")
