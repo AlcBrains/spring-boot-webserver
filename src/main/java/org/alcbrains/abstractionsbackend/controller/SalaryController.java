@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
-@RestController(value = "salaries/")
+@RestController
+@RequestMapping("salaries")
 public class SalaryController {
 
     private final SalaryService salaryService;
@@ -24,25 +25,17 @@ public class SalaryController {
         return salaryService.findAllSalaries();
     }
 
-    @GetMapping("salary/{employeeId}")
+    @GetMapping("/salary/{employeeId}")
     public Salary getSalaryOfEmployee(@PathVariable int employeeId, @RequestParam String fromDate) throws EntityNotFoundException {
         return salaryService.findSalaryById(employeeId, fromDate).orElseThrow(EntityNotFoundException::new);
     }
 
-    @PostMapping("salary/")
+    @PostMapping("/salary")
     @ResponseStatus(HttpStatus.CREATED)
     public String createSalary(@RequestBody Salary salary) {
 
         salaryService.createSalary(salary);
         return "Successfully created Salary";
     }
-
-    @DeleteMapping("salary/${salaryId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public String deleteSalary(@RequestParam SalaryId salaryId) {
-        salaryService.deleteSalaryById(salaryId);
-        return "Successfully Deleted salary with Id " + salaryId;
-    }
-
 
 }

@@ -12,7 +12,8 @@ import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
-@RestController(value = "titles/")
+@RestController
+@RequestMapping("titles")
 public class TitleController {
 
     private final TitleService titleService;
@@ -26,13 +27,13 @@ public class TitleController {
         return titleService.findAllTitles();
     }
 
-    @GetMapping("title")
+    @GetMapping("/title")
     public Title getTitle(@RequestParam int empNo, @RequestParam String title, @RequestParam String fromDate) {
         return titleService.getTitleById(new TitleId(empNo, title, LocalDate.parse(fromDate)))
                 .orElseThrow(EntityNotFoundException::new);
     }
 
-    @PostMapping("title")
+    @PostMapping("/title")
     @ResponseStatus(HttpStatus.CREATED)
     public String createTitle(@RequestBody TitleId stringTitle) {
         titleService.createTitle(new Title(stringTitle));

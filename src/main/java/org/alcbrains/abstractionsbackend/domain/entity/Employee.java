@@ -8,6 +8,7 @@ import java.time.LocalDate;
 public class Employee {
     @Id
     @Column(name = "emp_no", nullable = false)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "birth_date", nullable = false)
