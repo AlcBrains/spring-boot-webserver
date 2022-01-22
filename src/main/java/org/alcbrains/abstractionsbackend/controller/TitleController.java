@@ -1,6 +1,8 @@
 package org.alcbrains.abstractionsbackend.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.alcbrains.abstractionsbackend.domain.entity.Title;
 import org.alcbrains.abstractionsbackend.domain.entity.TitleId;
 import org.alcbrains.abstractionsbackend.service.TitleService;
@@ -17,9 +19,11 @@ import java.util.List;
 public class TitleController {
 
     private final TitleService titleService;
+    private final ObjectMapper objectMapper;
 
     public TitleController(@Autowired TitleService titleService) {
         this.titleService = titleService;
+        this.objectMapper = new ObjectMapper();
     }
 
     @GetMapping("")
@@ -35,15 +39,17 @@ public class TitleController {
 
     @PostMapping("/title")
     @ResponseStatus(HttpStatus.CREATED)
-    public String createTitle(@RequestBody TitleId stringTitle) {
-        titleService.createTitle(new Title(stringTitle));
+    public String createTitle(@RequestBody String stringTitle) throws JsonProcessingException {
+        TitleId titleId = objectMapper.readValue(stringTitle, TitleId.class);
+        titleService.createTitle(new Title(titleId));
         return "Title Created Successfully";
     }
 
     @DeleteMapping("title/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public String deleteTitle(@RequestBody Title title) {
-        titleService.deleteTitle(title);
+    public String deleteTitle(@RequestBody String stringTitleId) throws JsonProcessingException {
+        TitleId titleId = objectMapper.readValue(stringTitleId, TitleId.class);
+        titleService.deleteTitle(titleId);
         return "Title Deleted Successfully";
     }
 }

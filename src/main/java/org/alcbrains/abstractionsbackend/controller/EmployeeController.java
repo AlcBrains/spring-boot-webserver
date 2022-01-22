@@ -47,8 +47,9 @@ public class EmployeeController {
 
     @PatchMapping("/employee/{employeeId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public String updateEmployee(@RequestBody EmployeeDTO employeeDto, @PathVariable int employeeId) {
-        employeeService.updateEmployee(employeeDto, employeeId);
+    public String updateEmployee(@RequestBody String employeeDtoString, @PathVariable int employeeId) throws JsonProcessingException {
+        EmployeeDTO employeeDTO = objectMapper.readValue(employeeDtoString, EmployeeDTO.class);
+        employeeService.updateEmployee(employeeDTO, employeeId);
         return "Employee updated Successfully";
     }
 

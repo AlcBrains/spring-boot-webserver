@@ -38,7 +38,7 @@ public class TitleServiceRepoImpl implements TitleService {
     }
 
     @Override
-    public void deleteTitle(Title title) {
-        titleRepository.delete(title);
+    public void deleteTitle(TitleId titleId) {
+        titleRepository.deleteById(titleId);
     }
 }

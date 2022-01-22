@@ -1,5 +1,7 @@
 package org.alcbrains.abstractionsbackend.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.alcbrains.abstractionsbackend.domain.entity.Salary;
 import org.alcbrains.abstractionsbackend.domain.entity.SalaryId;
 import org.alcbrains.abstractionsbackend.service.SalaryService;
@@ -15,9 +17,11 @@ import java.util.List;
 public class SalaryController {
 
     private final SalaryService salaryService;
+    private final ObjectMapper objectMapper;
 
     public SalaryController(@Autowired SalaryService salaryService) {
         this.salaryService = salaryService;
+        this.objectMapper = new ObjectMapper();
     }
 
     @GetMapping("")
@@ -32,9 +36,9 @@ public class SalaryController {
 
     @PostMapping("/salary")
     @ResponseStatus(HttpStatus.CREATED)
-    public String createSalary(@RequestBody Salary salary) {
-
-        salaryService.createSalary(salary);
+    public String createSalary(@RequestBody String salary) throws JsonProcessingException {
+        Salary salary1 = objectMapper.readValue(salary, Salary.class);
+        salaryService.createSalary(salary1);
         return "Successfully created Salary";
     }
 
