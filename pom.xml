@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.alcbrains</groupId>
-	<artifactId>abstractions-backend</artifactId>
+	<artifactId>spring-boot-webserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>abstractions-backend</name>
+	<name>spring-boot-webserver</name>
 	<description>Backend project for thesis</description>
 	<properties>
 		<java.version>11</java.version>
