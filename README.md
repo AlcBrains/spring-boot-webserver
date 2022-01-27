@@ -1,4 +1,4 @@
-# turbo-disco
+# spring-boot-webserver
 Spring boot version of middleware api server for a sample employees database
 
 This project is a spring boot implementation for an API server that acts as middleware for a sample database.
